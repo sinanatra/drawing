@@ -1,13 +1,11 @@
 <img width="1438" alt="Screenshot 2023-03-08 at 00 35 14" src="https://user-images.githubusercontent.com/20107875/223579927-1e3bdce3-1471-4a5e-b6ba-a4e64d7f2456.png">
 
-------
 
 Requirements
 ----------
 
 + [Node.js](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/).
 
------
 
 Run
 -----

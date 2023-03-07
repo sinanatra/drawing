@@ -217,6 +217,7 @@
         height: 100vh;
         overflow: hidden;
         font-family: sans-serif;
+        background-color: white;
     }
 
     svg {

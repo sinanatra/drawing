@@ -216,6 +216,7 @@
     .container {
         height: 100vh;
         overflow: hidden;
+        font-family: sans-serif;
     }
 
     svg {

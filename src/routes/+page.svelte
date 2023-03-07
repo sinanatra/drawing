@@ -8,6 +8,9 @@
 </div>
 
 <style>
+    :global(body)  {
+        margin: 0;
+    }
     div {
         height: 100vh;
     }

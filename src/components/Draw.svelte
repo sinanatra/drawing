@@ -80,7 +80,7 @@
             path += `L${x},${y}`;
         }
 
-        path += `C${obj.dataPoints[0][0]},${obj.dataPoints[0][1]},${obj.dataPoints[0][0]},${obj.dataPoints[0][1]},${obj.dataPoints[1][0]},${obj.dataPoints[1][1]}`;
+        // path += `C${obj.dataPoints[0][0]},${obj.dataPoints[0][1]},${obj.dataPoints[0][0]},${obj.dataPoints[0][1]},${obj.dataPoints[1][0]},${obj.dataPoints[1][1]}`;
 
         return {
             id: parseInt(obj._id),

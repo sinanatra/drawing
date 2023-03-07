@@ -25,12 +25,12 @@
 
     function handleMouseDown(d) {
         drawObj.isDrawing = true;
-        drawObj.dataPoints.push([d.x , d.y , color]);
+        drawObj.dataPoints.push([d.x - 10, d.y - 10, color]);
     }
 
     function handleMouseMove(d) {
         if (drawObj.isDrawing) {
-            drawObj.dataPoints.push([d.x , d.y , color]);
+            drawObj.dataPoints.push([d.x - 10, d.y - 10, color]);
         }
 
         if (!drawObj.currentPath) {

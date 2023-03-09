@@ -22,6 +22,11 @@
 
     let svg;
     let color = "rgba(0, 0, 0, 1)";
+    $: {
+        if (drawObj.currentPath) {
+            drawObj.currentPath.attr("stroke", color);
+        }
+    }
 
     function handleMouseDown(d) {
         drawObj.isDrawing = true;
@@ -79,8 +84,6 @@
             const [x, y] = obj.dataPoints[i];
             path += `L${x},${y}`;
         }
-
-        // path += `C${obj.dataPoints[0][0]},${obj.dataPoints[0][1]},${obj.dataPoints[0][0]},${obj.dataPoints[0][1]},${obj.dataPoints[1][0]},${obj.dataPoints[1][1]}`;
 
         return {
             id: parseInt(obj._id),

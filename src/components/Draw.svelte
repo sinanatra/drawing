@@ -2,8 +2,10 @@
     import { onMount } from "svelte";
     import { select, selectAll } from "d3-selection";
     import { line, curveBasis } from "d3-shape";
+    import { draw } from "svelte/transition";
 
     export let data;
+
     let d3 = {
         select,
         selectAll,
@@ -75,21 +77,24 @@
         drawObj.currentPath = null;
     }
 
-    const transformedObj = data.posts.map((obj) => {
-        const color = obj.dataPoints[0][2];
+    let transformedObj = [];
+    onMount(async () => {
+        transformedObj = data.posts.map((obj) => {
+            const color = obj.dataPoints[0][2];
 
-        let path = `M${obj.dataPoints[0][0]},${obj.dataPoints[0][1]}`;
+            let path = `M${obj.dataPoints[0][0]},${obj.dataPoints[0][1]}`;
 
-        for (let i = 1; i < obj.dataPoints.length; i++) {
-            const [x, y] = obj.dataPoints[i];
-            path += `L${x},${y}`;
-        }
+            for (let i = 1; i < obj.dataPoints.length; i++) {
+                const [x, y] = obj.dataPoints[i];
+                path += `L${x},${y}`;
+            }
 
-        return {
-            id: parseInt(obj._id),
-            color: color,
-            path: path,
-        };
+            return {
+                id: parseInt(obj._id),
+                color: color,
+                path: path,
+            };
+        });
     });
 </script>
 
@@ -102,13 +107,16 @@
         on:mousedown={handleMouseDown}
         on:mouseup={handleMouseUp}
     >
-        {#each transformedObj as d}
-            <path
-                stroke={d.color}
-                style="stroke-width: 10; fill: none; stroke-linecap: round;"
-                d={d.path}
-            />
-        {/each}
+        {#if transformedObj.length > 0}
+            {#each transformedObj as d, i}
+                <path
+                    in:draw={{ duration: 3000 }}
+                    stroke={d.color}
+                    style="stroke-width: 10; fill: none; stroke-linecap: round;"
+                    d={d.path}
+                />
+            {/each}
+        {/if}
     </svg>
 
     <section id="colorSwatch">

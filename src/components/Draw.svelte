@@ -32,12 +32,12 @@
 
     function handleMouseDown(d) {
         drawObj.isDrawing = true;
-        drawObj.dataPoints.push([d.x - 10, d.y - 10, color]);
+        drawObj.dataPoints.push([d.x, d.y, color]);
     }
 
     function handleMouseMove(d) {
         if (drawObj.isDrawing) {
-            drawObj.dataPoints.push([d.x - 10, d.y - 10, color]);
+            drawObj.dataPoints.push([d.x, d.y, color]);
         }
 
         if (!drawObj.currentPath) {
@@ -95,6 +95,10 @@
                 path: path,
             };
         });
+        for (let i = 0; i < transformedObj.length; i++) {
+            await new Promise((resolve) => setTimeout(resolve, 10));
+            transformedObj[i].delayed = true;
+        }
     });
 </script>
 
@@ -107,16 +111,16 @@
         on:mousedown={handleMouseDown}
         on:mouseup={handleMouseUp}
     >
-        {#if transformedObj.length > 0}
-            {#each transformedObj as d, i}
+        {#each transformedObj as d, i}
+            {#if d.delayed}
                 <path
-                    in:draw={{ duration: 3000 }}
+                    in:draw={{ duration: 500 }}
                     stroke={d.color}
                     style="stroke-width: 10; fill: none; stroke-linecap: round;"
                     d={d.path}
                 />
-            {/each}
-        {/if}
+            {/if}
+        {/each}
     </svg>
 
     <section id="colorSwatch">

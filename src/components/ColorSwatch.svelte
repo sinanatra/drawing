@@ -19,7 +19,7 @@
 </script>
 
 <section id="colorSwatch">
-    {#each colors as { value, style, checked }}
+    {#each colors as { value, checked }}
         <input
             type="radio"
             name="color"
